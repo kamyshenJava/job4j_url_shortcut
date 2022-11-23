@@ -9,9 +9,10 @@ public class RandomStringGenerator {
         Random random = new Random();
 
        return random.ints(leftLimit, rightLimit + 1)
-                .limit(length)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+               .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+               .limit(length)
+               .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+               .toString();
     }
 
 }

@@ -3,3 +3,9 @@ create table if not exists clients(
     site text unique not null,
     password text not null
 );
+
+create table if not exists links(
+    id serial primary key,
+    url text,
+    generated_code text
+)

@@ -49,6 +49,7 @@ public class SecurityConfig {
             .authorizeRequests(auth -> auth
                     .antMatchers(HttpMethod.POST, "/login").permitAll()
                     .antMatchers(HttpMethod.POST, "/registration").permitAll()
+                    .antMatchers(HttpMethod.GET, "/redirect/**").permitAll()
                     .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
