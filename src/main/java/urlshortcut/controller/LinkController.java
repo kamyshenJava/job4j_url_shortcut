@@ -13,7 +13,7 @@ import java.util.Map;
 public class LinkController {
 
     private static final String CODE = "code";
-    private static final String REDIRECT_HEADER = "Location";
+    public static final String REDIRECT_HEADER = "Location";
     private final LinkService linkService;
 
     public LinkController(LinkService linkService) {
