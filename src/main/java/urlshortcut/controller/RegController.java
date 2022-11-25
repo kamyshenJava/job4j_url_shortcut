@@ -12,7 +12,7 @@ import urlshortcut.util.RandomStringGenerator;
 import java.util.HashMap;
 import java.util.Optional;
 
-@RestController
+@RestController(value = "/registration")
 public class RegController {
 
     private final ClientService clientService;

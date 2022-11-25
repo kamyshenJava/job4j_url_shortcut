@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import urlshortcut.dto.LoginRequest;
 import urlshortcut.service.TokenService;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 public class AuthController {
 
