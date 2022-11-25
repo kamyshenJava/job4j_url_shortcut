@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import urlshortcut.model.Link;
 import urlshortcut.service.LinkService;
 
+import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,16 +23,23 @@ public class LinkController {
     }
 
     @PostMapping("/convert")
-    public ResponseEntity<?> convert(@RequestBody Link link) {
-        String generatedCode = linkService.generateUrlAndSave(link.getUrl());
+    public ResponseEntity<?> convert(@RequestBody Link link, Principal principal) {
+        String generatedCode = linkService.generateUrlAndSave(link.getUrl(), principal.getName());
         return ResponseEntity.ok(Map.of(CODE, generatedCode));
     }
 
     @GetMapping("/redirect/{code}")
     public ResponseEntity<String> redirect(@PathVariable String code) {
-        Link linkDb = linkService.findByGeneratedCode(code);
+        String url = linkService.findByGeneratedCode(code);
         HttpHeaders headers = new HttpHeaders();
-        headers.add(REDIRECT_HEADER, linkDb.getUrl());
+        headers.add(REDIRECT_HEADER, url);
         return new ResponseEntity<>(headers, HttpStatus.valueOf(302));
+    }
+
+    @GetMapping("/statistic")
+    public ResponseEntity<?> getStatistic(Principal principal) {
+        String site = principal.getName();
+        List<Map<String, String>> statistics = linkService.generateStatistics(site);
+        return ResponseEntity.ok(statistics);
     }
 }

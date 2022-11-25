@@ -12,6 +12,11 @@ public class Client {
     private String site;
     private String password;
 
+    public static Client of(String site) {
+        Client client = new Client();
+        client.setSite(site);
+        return client;
+    }
     public static Client of(String site, String password) {
         Client client = new Client();
         client.setSite(site);

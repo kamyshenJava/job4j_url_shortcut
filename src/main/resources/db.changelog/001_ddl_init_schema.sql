@@ -7,5 +7,7 @@ create table if not exists clients(
 create table if not exists links(
     id serial primary key,
     url text,
-    generated_code text
+    generated_code text,
+    count int default 0,
+    client_id int references clients(id)
 )
