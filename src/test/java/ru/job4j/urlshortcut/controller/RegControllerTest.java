@@ -24,7 +24,7 @@ class RegControllerTest {
                 .content("{\"site\":\"job4j.ru\"}"))
                 .andExpectAll(status().isOk(),
                 content().contentType("application/json"),
-                jsonPath("registration").value("true"),
+                jsonPath("registered").value("true"),
                 jsonPath("login").value("job4j.ru"),
                 jsonPath("password").isString());
     }
@@ -39,7 +39,7 @@ class RegControllerTest {
                 .content("{\"site\":\"mail.ru\"}"))
                 .andExpectAll(status().isOk(),
                 content().contentType("application/json"),
-                jsonPath("registration").value("false"),
+                jsonPath("registered").value("false"),
                 jsonPath("login").value("mail.ru"),
                 jsonPath("password").doesNotExist());
     }

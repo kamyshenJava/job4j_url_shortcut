@@ -104,7 +104,7 @@ class LinkControllerTest {
                 .header(HEADER_STRING, jwt))
                 .andExpectAll(status().isOk(),
                         content().contentType("application/json"),
-                        content().json("[{\"url : google.com\":\"total : 2\"}]"));
+                        content().json("{\"google.com\":2}"));
 
     }
 }

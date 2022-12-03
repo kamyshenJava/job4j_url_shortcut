@@ -1,15 +1,18 @@
 package ru.job4j.urlshortcut.util;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
-public class RandomStringGenerator {
-    public static String generate(int length) {
-        int leftLimit = 48;
-        int rightLimit = 122;
+@Component
+public class RandomStringGenerator implements StringGenerator {
+    public String generate(int length) {
+        int leftLimit = '0';
+        int rightLimit = 'z';
         Random random = new Random();
 
        return random.ints(leftLimit, rightLimit + 1)
-               .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+               .filter(i -> (i <= '9' || i >= 'A') && (i <= 'Z' || i >= 'a'))
                .limit(length)
                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                .toString();

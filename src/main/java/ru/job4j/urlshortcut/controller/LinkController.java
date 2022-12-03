@@ -4,11 +4,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.job4j.urlshortcut.dto.Statistics;
 import ru.job4j.urlshortcut.model.Link;
 import ru.job4j.urlshortcut.service.LinkService;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,7 +39,7 @@ public class LinkController {
     @GetMapping("/statistic")
     public ResponseEntity<?> getStatistic(Principal principal) {
         String site = principal.getName();
-        List<Map<String, String>> statistics = linkService.generateStatistics(site);
-        return ResponseEntity.ok(statistics);
+        Statistics statistics = linkService.generateStatistics(site);
+        return ResponseEntity.ok(statistics.getTraffic());
     }
 }
